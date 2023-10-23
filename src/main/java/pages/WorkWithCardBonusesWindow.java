@@ -45,7 +45,7 @@ public class WorkWithCardBonusesWindow {
 
     public void commentSetValueChars() {
         comment.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
-        String validStr = "testtest";
+        String validStr = "Очень длинный комментарий для теста балбалаблабалабалаблабалаблабалаблабалабал";
         for (int i = 0; i < validStr.length(); i++) {
             comment.sendKeys(String.valueOf(validStr.charAt(i)));
         }
@@ -58,7 +58,11 @@ public class WorkWithCardBonusesWindow {
 
     public void authorSetValue(String text) {
         author.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
-        author.sendKeys(text);
+        String validStr = "Очень длинное имя автора потому что это автотест";
+        for (int i = 0; i < validStr.length(); i++) {
+            author.sendKeys(String.valueOf(validStr.charAt(i)));
+        }
+//        author.sendKeys(text);
     }
 
     public String getCardNumberFromBarcode() {

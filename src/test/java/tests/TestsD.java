@@ -49,6 +49,23 @@ public class TestsD extends Settings{
     }
 
     @Test
+    private  void uiTestValidate(){
+        cardPage.openCardBonus();
+        workWithCardBonusesWindow.bonusSetValue((bonus));
+        Assert.assertEquals(cardNumber, workWithCardBonusesWindow.getCardNumberFromBarcode(),
+                cardNumber + " not equal " + workWithCardBonusesWindow.getCardNumberFromBarcode());
+        workWithCardBonusesWindow.sumSetValue(sum);
+//        workWithCardBonusesWindow.validAtSetValue(validAt);
+//        workWithCardBonusesWindow.isExpiringSetValue(isExpiring);
+        workWithCardBonusesWindow.commentSetValueChars();
+        //  workWithCardBonusesWindow.commentSetValueChars();
+//        workWithCardBonusesWindow.expireDateSetValue(expireDate);
+        workWithCardBonusesWindow.authorSetValue(author);
+
+        workWithCardBonusesWindow.clickSubmitButton();
+    }
+
+    @Test
     public void apiTest(){
         RestAssured.baseURI = "http://loyalty-dev.spb.lichishop.com";
 

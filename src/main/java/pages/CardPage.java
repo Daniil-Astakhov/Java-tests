@@ -9,10 +9,12 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class CardPage {
-    private SelenideElement cardBonusButton =
+    private final SelenideElement cardBonusButton =
             $x("//button[@id='TestButton']");
     public SelenideElement chosenCard =
             $x("//span[contains(@id,'react-aria')]");
+    public SelenideElement backBtn =
+            $x("//button[contains(@id,'back')]");
 
     public void openCardBonus() {
         cardBonusButton.shouldBe(Condition.visible, Duration.ofSeconds(10)).click();
@@ -21,6 +23,11 @@ public class CardPage {
     public String getChosenCard() {
         Selenide.sleep(2000);
         return chosenCard.shouldBe(Condition.visible, Duration.ofSeconds(5)).getText();
+    }
+
+    public void clickBackBtn() {
+        backBtn.shouldBe(Condition.visible, Duration.ofSeconds(10)).click();
+
     }
 
 }

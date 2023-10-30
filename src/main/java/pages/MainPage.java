@@ -7,7 +7,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 public class MainPage {
-     private SelenideElement firstCard = $x("//td[contains(@id, 'react-aria-:R1amkq:-+79947168411-name')]");
+     private SelenideElement firstCard = $x("//p[@id='autoTest']" );
 
     public void clickOnFirstCard(){
         firstCard.shouldBe(Condition.visible, Duration.ofSeconds(10)).click();

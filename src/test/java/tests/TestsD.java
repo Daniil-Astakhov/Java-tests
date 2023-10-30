@@ -38,8 +38,8 @@ public class TestsD extends Settings{
         Assert.assertEquals(cardNumber, workWithCardBonusesWindow.getCardNumberFromBarcode(),
                 cardNumber + " not equal " + workWithCardBonusesWindow.getCardNumberFromBarcode());
         workWithCardBonusesWindow.sumSetValue(sum);
-        workWithCardBonusesWindow.validAtSetValue(validAt);
-        workWithCardBonusesWindow.isExpiringSetValue(isExpiring);
+//        workWithCardBonusesWindow.validAtSetValue(validAt);
+//        workWithCardBonusesWindow.isExpiringSetValue(isExpiring);
         workWithCardBonusesWindow.commentSetValue(comment);
       //  workWithCardBonusesWindow.commentSetValueChars();
         workWithCardBonusesWindow.expireDateSetValue(expireDate);

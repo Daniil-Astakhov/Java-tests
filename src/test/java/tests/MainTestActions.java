@@ -20,7 +20,10 @@ public class MainTestActions extends Tests {
         testsList.apiTest();
     }
 
-
+    @Test
+    private  void apiNoValidateTest() {
+        testsList.noValidApiTest();
+    }
 
     @Test
     private  void baseUiTest() {
@@ -28,7 +31,7 @@ public class MainTestActions extends Tests {
     }
 
     @Test
-    private  void vaseNoValidUiTest() {
+    private  void baseNoValidUiTest() {
         testsList.noValidUiTest();
     }
 

@@ -24,7 +24,7 @@ public class CardBonus {
         return barcode;
     }
 
-    @Step("Set value for Barcdoe {barcode}")
+    @Step("Set value for Barcode {barcode}")
     public void setBarcode(String barcode) {
         this.barcode = barcode;
     }

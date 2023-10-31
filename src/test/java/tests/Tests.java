@@ -43,9 +43,8 @@ public class Tests extends Settings {
 
 
     public void validUiTest() {
-
         // BeforeTest
-        cardBonusObject = setCardBonus();
+        cardBonusObject = setValidCardBonus();
         mainPage.clickOnFirstCard();
         cardNumber = cardPage.getChosenCard().replace(",", "").replace("\n", "");
         cardBonusObject.setBarcode(cardNumber);
@@ -56,35 +55,15 @@ public class Tests extends Settings {
         Assert.assertEquals(cardNumber, workWithCardBonusesWindow.getCardNumberFromBarcode(),
                 cardNumber + " not equal " + workWithCardBonusesWindow.getCardNumberFromBarcode());
         workWithCardBonusesWindow.sumSetValue(sum);
-//        workWithCardBonusesWindow.validAtSetValue(validAt);
-//        workWithCardBonusesWindow.isExpiringSetValue(isExpiring);
         workWithCardBonusesWindow.commentSetValueChars();
-        //  workWithCardBonusesWindow.commentSetValueChars();
         workWithCardBonusesWindow.expireDateSetValue(expireDate);
         workWithCardBonusesWindow.authorSetValue(author);
 
         workWithCardBonusesWindow.clickSubmitButton();
-
-//        // BeforeTest
-//        cardBonusObject = setCardBonus();
-//        mainPage.clickOnFirstCard();
-//        cardNumber = cardPage.getChosenCard().replace(",", "").replace("\n", "");
-//        cardBonusObject.setBarcode(cardNumber);
-//
-//        // BodyTest
-//        cardPage.openCardBonus();
-//        workWithCardBonusesWindow.bonusSetValue(bonus);
-//        Assert.assertEquals(cardNumber, workWithCardBonusesWindow.getCardNumberFromBarcode(),
-//                cardNumber + " not equal " + workWithCardBonusesWindow.getCardNumberFromBarcode());
-//        workWithCardBonusesWindow.sumSetValue(sum);
-//        workWithCardBonusesWindow.commentSetValue(comment);
-//        workWithCardBonusesWindow.expireDateSetValue(expireDate);
-//        workWithCardBonusesWindow.authorSetValue(author);
-//        workWithCardBonusesWindow.clickSubmitButton();
     }
     public void noValidUiTest() {
         // BeforeTest
-        cardBonusObject = setCardBonus();
+        cardBonusObject = setNoValidCardBonus();
         mainPage.clickOnFirstCard();
         cardNumber = cardPage.getChosenCard().replace(",", "").replace("\n", "");
         cardBonusObject.setBarcode(cardNumber);
@@ -95,13 +74,9 @@ public class Tests extends Settings {
         Assert.assertEquals(cardNumber, workWithCardBonusesWindow.getCardNumberFromBarcode(),
                 cardNumber + " not equal " + workWithCardBonusesWindow.getCardNumberFromBarcode());
         workWithCardBonusesWindow.sumSetValue(sum);
-//        workWithCardBonusesWindow.validAtSetValue(validAt);
-//        workWithCardBonusesWindow.isExpiringSetValue(isExpiring);
         workWithCardBonusesWindow.commentSetValueChars();
-        //  workWithCardBonusesWindow.commentSetValueChars();
         workWithCardBonusesWindow.expireDateSetValue(noValidExpireDate);
         workWithCardBonusesWindow.authorSetValue(author);
-
         workWithCardBonusesWindow.clickSubmitButton();
     }
 
@@ -154,7 +129,7 @@ public class Tests extends Settings {
 
     public void uiTestValidate() {
         // BeforeTest
-        cardBonusObject = setCardBonus();
+        cardBonusObject = setValidCardBonus();
         mainPage.clickOnFirstCard();
         cardNumber = cardPage.getChosenCard().replace(",", "").replace("\n", "");
         cardBonusObject.setBarcode(cardNumber);
@@ -165,18 +140,28 @@ public class Tests extends Settings {
         Assert.assertEquals(cardNumber, workWithCardBonusesWindow.getCardNumberFromBarcode(),
                 cardNumber + " not equal " + workWithCardBonusesWindow.getCardNumberFromBarcode());
         workWithCardBonusesWindow.sumSetValue(sum);
-//        workWithCardBonusesWindow.validAtSetValue(validAt);
-//        workWithCardBonusesWindow.isExpiringSetValue(isExpiring);
         workWithCardBonusesWindow.commentSetValueChars();
-        //  workWithCardBonusesWindow.commentSetValueChars();
-//        workWithCardBonusesWindow.expireDateSetValue(expireDate);
         workWithCardBonusesWindow.authorSetValue(author);
-
         workWithCardBonusesWindow.clickSubmitButton();
     }
 
 
     public void apiTest() {
+        RestAssured.baseURI = "http://loyalty-dev.spb.lichishop.com";
+
+        String requestBody = jsonCard.getJsonFromCardBonus(cardBonusObject);
+        RestAssured.given()
+                .contentType(ContentType.JSON)
+                .body(requestBody)
+                .when()
+                .post("/manual")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
+    }
+
+    public void noValidApiTest() {
         RestAssured.baseURI = "http://loyalty-dev.spb.lichishop.com";
 
         String requestBody = jsonCard.getJsonFromCardBonus(cardBonusObject);

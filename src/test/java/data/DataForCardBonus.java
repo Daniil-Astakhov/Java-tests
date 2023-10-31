@@ -11,7 +11,8 @@ public class DataForCardBonus {
     public static final String validAt = "2023-12-01 00:00:00";
     public static final String isExpiring = "true";
     public static final String comment = LocalDateTime.now().toString();
-    public static final String expireDate = "2024-12-01 00:00:00";
+    public static final String expireDate = "01122024 0000";
+    public static final  String noValidExpireDate = "12012000 0000";
     public static final String author = RandomStringUtils.randomAlphabetic(10);
 
     public static CardBonus setCardBonus() {

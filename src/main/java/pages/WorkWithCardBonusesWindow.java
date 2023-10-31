@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
@@ -8,15 +9,16 @@ import java.time.Duration;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class WorkWithCardBonusesWindow {
-    private SelenideElement barcode = $x("//input[@id='barcode']");
-    private SelenideElement bonus = $x("//input[@id='bonus']");
-    private SelenideElement sum = $x("//input[@id='sum']");
-    private SelenideElement validAt = $x("//input[@id='valid_at']");
-    private SelenideElement isExpiring = $x("//input[@id='is_expiring']");
-    private SelenideElement comment = $x("//input[@id='comment']");
-    private SelenideElement expireDate = $x("//input[@id='expire_date']");
-    private SelenideElement author = $x("//input[@id='author']");
-    private SelenideElement submitButton = $x("//button[@type='submit']");
+    private final SelenideElement barcode = $x("//input[@id='barcode']");
+    private final SelenideElement bonus = $x("//input[@id='bonus']");
+    private final SelenideElement sum = $x("//input[@id='sum']");
+    private final SelenideElement validAt = $x("//input[@id='valid_at']");
+    private final SelenideElement isExpiring = $x("//input[@id='is_expiring']");
+    private final SelenideElement comment = $x("//input[@id='comment']");
+    private final SelenideElement expireDateLabel = $x("//label[@id='forExpire']");
+    private final SelenideElement expireDate = $x("//input[@id='expire-date']");
+    private final SelenideElement author = $x("//input[@id='author']");
+    private final SelenideElement submitButton = $x("//button[@type='submit']");
 
     public void bonusSetValue(String text) {
         bonus.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
@@ -45,14 +47,15 @@ public class WorkWithCardBonusesWindow {
 
     public void commentSetValueChars() {
         comment.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
-        String validStr = "Очень длинный комментарий для теста балбалаблабалабалаблабалаблабалаблабалабал";
+        String validStr = "Очень длинный комментарий для теста";
         for (int i = 0; i < validStr.length(); i++) {
+            Selenide.sleep(50);
             comment.sendKeys(String.valueOf(validStr.charAt(i)));
         }
     }
 
     public void expireDateSetValue(String text) {
-        expireDate.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
+        expireDateLabel.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
         expireDate.sendKeys(text);
     }
 
@@ -60,9 +63,9 @@ public class WorkWithCardBonusesWindow {
         author.shouldBe(Condition.visible, Duration.ofSeconds(5)).click();
         String validStr = "Очень длинное имя автора потому что это автотест";
         for (int i = 0; i < validStr.length(); i++) {
+            Selenide.sleep(50);
             author.sendKeys(String.valueOf(validStr.charAt(i)));
         }
-//        author.sendKeys(text);
     }
 
     public String getCardNumberFromBarcode() {
